@@ -3,11 +3,11 @@ function [imfs, decomposition] = emd(signal, E, k)
     l = length(signal);
     decomposition = zeros(l, 20);
     imfs = zeros(l, 20);
+    
+    decomposition(:, 1) = signal;
 
     if k == 0
-        decomposition(:, 1) = signal;
         i = 1;
-
         while ~is_mon(decomposition(:, i))
             imf = emdStep(decomposition(:, i), E);
             decomposition(:, i + 1) = decomposition(:, i) - imf;
@@ -16,8 +16,6 @@ function [imfs, decomposition] = emd(signal, E, k)
             toc
         end
     else
-        decomposition(:, 1) = signal;
-
         for i =1:k
             imf = emdStep(decomposition(:, i), E);
             decomposition(:, i + 1) = decomposition(:, i) - imf;
