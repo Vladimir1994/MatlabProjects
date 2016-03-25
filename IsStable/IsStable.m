@@ -31,11 +31,6 @@ function [output, matr, answ] = IsStable(argmatr)
     end
     
     minansw = min(answ);
-    
-    if minansw > 0
-        output = 1;
-    else
-        output = 0;
-    end
+    output = minansw > 0;
 end
 
